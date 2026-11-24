@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+  
+  <title>Report Item</title>
+</head>
+<body class="report-page">
+  <nav>
+<!-- The Logo and Containers Itself -->
+<a href="#" class="logo">Gc link</a>
+ <div class="nav-links" id="navLinks">
+      <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="">Dashboard</a></li>
+         <li><a href="category.html">Browse List</a></li>
+         <li><a href="Report.html">Report Item</a></li>
+         <li><a href="">Chatbox</a></li>
+        </ul>
+ </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+  <main class="report-card">
+    <h1>Report An Item</h1>
+    <form id="reportForm">
+      <input type="text" id="itemName" placeholder="blank" required>
+      <input type="text" id="itemDesc" placeholder="Description (include identifier/secret details)" required>
+      <input type="text" id="lostLocation" placeholder="Where did you found the item?" required>
+      <input type="date" id="itemDate" placeholder="When did you saw the item?" required>
+      <input type="time" id="itemTime" placeholder="Time you saw the item?" required>
+      <input type="text" id="itemColor" placeholder="Color" required>
+      <input type="text" id="itemShape" placeholder="Shape" required>
+      <input type="text" id="itemModel" placeholder="Model" required>
+      <input type="text" id="itemBrand" placeholder="Brand" required>
+      <input type="text" id="itemAdditionalSecretDetails" placeholder="Any unique details?" required>
+      <input type="text" id="contactGmail" placeholder="Please put your gmail account" required>
+      <input type="file" id="itemPhoto" accept="image/*">
+      <button type="submit" class="submit-btn">Done</button>
+    </form>
+      <p id="formMessage"></p>
+  </main>
+  
+  <script>
+  
+  var navLinks = document.getElementById("navLinks");
+  function showMenu(){
+    navLinks.style.right = "0";
+  }
+  function hideMenu(){
+    navLinks.style.right = "-200px";
+  }
+
+    const reportForm =document.getElementById("reportForm");
+    const formMessage =document.getElementById("formMessage");
+    
+    function validateForm() {
+      const itemName =document.getElementById("itemName").value.trim();
+      const itemDesc =document.getElementById("itemDesc").value.trim();
+      const lostLocation =document.getElementById("lostLocation").value.trim();
+      const contactGmail =document.getElementById("contactGmail").value.trim();
+      
+      if (!itemName || !itemDesc || !lostLocation || !contactGmail){
+        formMessage.textContent = "Kindly fill out the required details";
+        return false;
+      }
+      formMessage.textContent = "";
+        return true;
+    }
+    function saveReport(data) {
+      const existing = JSON.parse(localStorage.getItem("reportedLostItems") || "[]");
+      existing.push(data);
+      localStorage.setItem("reportedLostItems", JSON.stringify(existing));
+    }
+    
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+      
+      const fileInput = document.getElementById("itemPhoto");
+      const fileName = fileInput .files[0] ? fileInput .files[0].name : "";
+      
+      const newReport = {
+         itemName: document.getElementById("itemName").value.trim(),
+         description : document.getElementById("itemDesc").value.trim(),
+         location : document.getElementById("lostLocation").value.trim(),
+         date : document.getElementById("itemDate").value.trim(),
+         time : document.getElementById("itemTime").value.trim(),
+         color : document.getElementById("itemColor").value.trim(),
+         shape : document.getElementById("itemShape").value.trim(),
+         model: document.getElementById("itemModel").value.trim(),
+         brand: document.getElementById("itemBrand").value.trim(),
+         additionalDetails: document.getElementById("itemAdditionalSecretDetails").value.trim(),
+         gmail: document.getElementById("contactGmail").value.trim(),
+         photoName: fileName,
+         submittedAt: new Date().toISOString()
+      };
+      
+      saveReport(newReport);
+      reportForm.reset();
+      formMessage.textContent = "na-submit na siya,bes!";
+    }
+    
+    reportForm.addEventListener("submit", handleFormSubmit);
+  </script>
+</body>
+</html>

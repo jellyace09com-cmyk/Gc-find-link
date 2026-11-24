@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"> 
+  
+  <title>Chat Prototype</title>
+</head>
+    <nav>
+<!-- Menu -->
+<a href="#" class="logo">Gc link</a>
+ <div class="nav-links" id="navLinks">
+      <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="">Dashboard</a></li>
+         <li><a href="category.html">Browse List</a></li>
+         <li><a href="Report.html">Report Item</a></li>
+         <li><a href="modelchat.html">Chatbox</a></li>
+        </ul>
+ </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+<div class="disclaimer-bar">
+  <p><strong>Disclaimer:</strong> Please take note that this is only a prototype interactive chat designed for our proposal subject and not yet fully developed. We highly appreciate your understanding regarding this matter. Thank you and God ess!</p>
+</div>
+
+<body class="chat-page">
+  <div class="message-container">
+    <div class="message-header">
+      <h3>Item: Tumbler</h3>
+      <small>The Status Identity is Verified</small>
+    </div>
+    
+    <div class="role-bar">
+      <span>Chatting as:<strong id="currentRoleText">Claimnant (Anna)</strong></span>
+      <button type="button" onclick="switchRole()">Time to Switch Role</button>
+      <button type="button" onclick="restartChat()">Reset Chat</button>
+    </div>
+    <div class="chat-box" id="chatBox"></div>
+    
+    <form class="chat-input" onsubmit="sendMessage(event)">
+      <input type="text" id="messageInput" placeholder="Type a message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  
+  <script>
+   
+    var navLinks = document.getElementById("navLinks");
+  function showMenu(){
+    navLinks.style.right = "0";
+  }
+  function hideMenu(){
+    navLinks.style.right = "-200px";
+  }
+  
+    let currentRole = 'claimnant';
+    
+    let messages = JSON.parse(localStorage.getItem('gc_chat_demo')) || [
+      { sender: 'finder', name: 'Finder (Elsa)', text: 'Hi po' },
+       { sender: 'claimnant', name: 'Claimnant (Anna)', text: 'Yes po' },
+    ];
+    
+     function renderMessage() {
+       const chatBox = document.getElementById('chatBox');
+       chatBox.innerHTML = '';
+       
+       messages.forEach(msg => {
+         const div = document.createElement('div');
+         div.className = `message ${msg.sender}`;
+         div.innerHTML = `<span class="sender-label">${msg.name}</span>${msg.text}`;
+         chatBox.appendChild(div);
+       });
+       
+       chatBox.scrollTop = chatBox.scrollHeight;
+     }
+     
+     function switchRole() {
+       const roleText = document.getElementById('currentRoleText');
+       if (currentRole === 'claimnant') {
+         currentRole = 'finder';
+         roleText.textContent = 'Finder (Elsa)';
+       } else {
+           currentRole = 'claimnant';
+         roleText.textContent = ' Claimnant (Anna)'; 
+         }
+       }
+       
+     function sendMessage(event) {
+       event.preventDefault();
+       
+       const messageInput = document.getElementById('messageInput');
+       const text = messageInput.value.trim();
+       if (text === '') return;
+       
+       const senderName = currentRole === 'claimnant' ? 'Claimnant (Anna)' : 'Finder (Elsa)';
+       
+       messages.push({
+         sender: currentRole,
+         name: senderName,
+         text: text
+       });
+     
+     localStorage.setItem('gc_chat_demo', JSON.stringify(messages));
+     
+     messageInput.value = '';
+     renderMessage();
+    }
+    
+    function restartChat() {
+    localStorage.removeItem('gc_chat_demo');
+    
+    messages = [
+      { sender: 'finder', name: 'Finder (Elsa)', text: 'Hi po' },
+       { sender: 'claimnant', name: 'Claimnant (Anna)', text: 'Yes po' },
+    ];
+    
+    renderMessage();
+    }
+    
+    renderMessage();
+  </script>
+</body>
+</html>

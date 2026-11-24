@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reported Items</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+</head>
+<body class="category">
+  
+<header>
+<nav>
+<!-- Copied Logo -->
+<a href="#" class="logo">Gc link</a>
+ <div class="nav-links" id="navLinks">
+      <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="AboutGc.html">AboutGc</a></li>
+         <li><a href="">Browse List</a></li>
+         <li><a href="ReportItem.html">Report Item</a></li>
+         <li><a href="">Chatbox</a></li>
+        </ul>
+ </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+</header>
+
+ <div class="menu-header">
+   <div class="title-group">
+    <h1>Lost Items</h1>
+    <span>Categories</span>
+   </div>
+ </div>
+  
+<!---- Search Bar ----->
+<div class="search-bar-container">
+  <input type="text"
+         id="searchInput"
+         placeholder="Search for your missing item"
+         onkeyup="handleSearchkey(event)">
+    
+  <button class="search-btn" onclick="searchItems()">Search</button>
+  <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;">Clear</button>
+</div>
+
+<!---- Category Selections --->
+<nav class="category-bar">
+  <button class="cat-btn active" onclick="filterCategory('all', this)">All Lost Items</button>
+  <button class="cat-btn" onclick="filterCategory('wallet', this)">Wallet</button>
+  <button class="cat-btn" onclick="filterCategory('tumbler', this)">Tumbler</button>
+  <button class="cat-btn" onclick="filterCategory('electronicdevices', this)">Electronic Devices</button>
+  <button class="cat-btn" onclick="filterCategory('bracelet', this)">Bracelet</button>
+  <button class="cat-btn" onclick="filterCategory('umbrella', this)">Umbrella</button>
+  <button class="cat-btn" onclick="filterCategory('charger', this)">Charger</button>
+  <button class="cat-btn" onclick="filterCategory('blank', this)">blank</button>
+  <button class="cat-btn" onclick="filterCategory('blank', this)">blank</button>
+</nav>
+  
+<!---- Result Failed ---->
+<p id="noResultsMessage" class="no-results">
+  Sorry but what you are looking for
+  is not here. Please use another
+  keyword and try again!
+</p>
+
+<!----- Row 1 ---->
+
+<div class="carousel-row-wrapper">
+  <button class="slide-arrow" onclick="slideRow(this, -1)">❮</button>
+  <div class="cards-track">
+ 
+<div class="lostitem-card" data-category="wallet">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/wallet.jpg" alt="Wallet">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+   <div>
+    <h3>Wallet</h3>
+    <p>A black wallet that contains a small red and white keychain with "I love you" on it.</p>
+  </div>
+  <div class="card-bottom">
+     <div class="btn-group">
+      <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+     </div>
+   </div>
+  </div>
+</div>
+
+
+
+<!----- Tumbler ---->
+
+<div class="lostitem-card" data-category="tumbler">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/tumbler.jpg" alt="Tumbler">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+  <div>
+    <h3>Tumbler</h3>
+    <p>A slim yet large green tumbler with a sticker of "tamaraw" on it.</p>
+  </div>
+  <div class="card-bottom">
+    <div class="btn-group">
+      <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+    </div>
+   </div>
+  </div>
+</div>
+
+<!------ electronic devices ---->
+
+<div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/earbuds.jpeg" alt="Earbuds">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Earbuds</h3>
+      <p>A black earbuds with a skull design on it.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Bracelet ----->
+
+<div class="lostitem-card" data-category="bracelet">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Yis.jpg" alt="Bracelet">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Bracelet</h3>
+      <p>A bracelet that contains multiple vibrant colors with cute diverse shapes.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Umbrella ----->
+
+<div class="lostitem-card" data-category="umbrella">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Balls.jpg" alt="Umbrella">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Umbrella</h3>
+      <p>A pink umbrella with hello kitty designs</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Charger ---->
+
+<div class="lostitem-card" data-category="charger">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Pretty.jpg" alt="Charger">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Charger</h3>
+      <p>A very cutie pie charger.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+<button class="slide-arrow" onclick="slideRow(this, 1)">❯</button>
+</div>
+
+<!----- Row 2 <---->
+<div class="carousel-row-wrapper">
+  <button class="slide-arrow" onclick="slideRow(this,-1)">❮</button>
+  <div class="cards-track">
+ 
+ <!----- Shoes ---->
+ 
+ <div class="lostitem-card" data-category="shoes">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/penkepie.jpg" alt="shoes">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Shoes</h3>
+      <p>A very cutesy shoes.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Sweater ---->
+
+<div class="lostitem-card" data-category="sweater">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/gehleethefluttershy.jpg" alt="Sweater">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Sweater</h3>
+      <p>A pink sweater.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Ring ---->
+<div class="lostitem-card" data-category="ring">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Yis.jpg" alt="Ring">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Ring</h3>
+      <p>A pink ring.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---- Bag ----->
+
+<div class="lostitem-card" data-category="bag">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Catpink.jpg" alt="Bag">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Bag</h3>
+      <p>A pinkish bag.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Necklace ------>
+
+<div class="lostitem-card" data-category="necklace">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Greenver.jpg" alt="Necklace">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Necklace</h3>
+      <p>A very much unique necklace.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------ Towel ----->
+
+<div class="lostitem-card" data-category="towel">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/Pink.jpg" alt="Towel">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Towel</h3>
+      <p>A cutie towel with pink cartoon design.</p>
+    </div>
+    <div class="card-bottom">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+      </div>
+    </div>
+
+</div>
+<button class="slide-arrow" onclick="slideRow(this, 1)">❯</button>
+</div>
+
+<!----- Row 3 <---->
+<div class="carousel-row-wrapper">
+  <button class="slide-arrow" onclick="slideRow(this,-1)">❮</button>
+  <div class="cards-track">
+ 
+ <!----- Headphone ---->
+ 
+ <div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/headphone.jpg" alt="Headphone">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Headphone</h3>
+      <p>A white headphone with stickers on it.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Ordinary Tumbler ---->
+
+<div class="lostitem-card" data-category="tumbler">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/blank.jpg" alt="Ordinary Tumbler">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Ordinary Tumblrr</h3>
+      <p>A very ordinary one...</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Earphone ---->
+<div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/monkey.jpg" alt="Earphone">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Earphone</h3>
+      <p>An excellent and durable earphone.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---- Cute Phone ----->
+
+<div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/cutephone.jpg" alt="Phone">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Phone</h3>
+      <p>A cute phone.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----- Laptop ------>
+
+<div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/laptop.jpg" alt="Laptop">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Laptop</h3>
+      <p>A very splendid laptop.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="btn-group">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------ Tv Remote ----->
+
+<div class="lostitem-card" data-category="electronicdevices">
+  <div class="card-img-box" onclick="openViewFromCard(this)">
+    <img src="images/tv.jpg" alt="Tv Remote">
+    <span class="img-hint">View</span>
+  </div>
+  <div class="card-info">
+    <div>
+      <h3>Tv Remote</h3>
+      <p>A cutie tv remote.</p>
+    </div>
+    <div class="card-bottom">
+        <button class="view-btn" onclick="openViewFromCard(this)">view</button>
+      </div>
+      </div>
+    </div>
+
+</div>
+<button class="slide-arrow" onclick="slideRow(this, 1)">❯</button>
+</div>
+
+ <!---- Modal --->
+ <div class="modal-overlay" id="viewModal" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="close-modal" onclick="document.getElementById('viewModal').style.display = 'none'">&times;</button>
+      <img id="modalImg" src="" alt="Item preview">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <button type="button" class="details-btn" onclick="goToClaimStatus()">Claim It Here!</button>
+    </div>
+ </div>
+ 
+<!----- JS Part ----->
+<script>
+ function slideRow(arrowBtn, direction) {
+ const wrapper = arrowBtn.parentElement;
+ const track = wrapper.querySelector('.cards-track');
+ const scrollAmount = 280; 
+ track.scrollBy({
+   left: direction * scrollAmount, behavior: 'smooth'
+   });
+ }
+ 
+ // Interactive Image and View Part //
+ function openViewFromCard(element) {
+   const card = element.closest('.lostitem-card');
+   const title = card.querySelector('h3').innerText;
+   const desc = card.querySelector('p').innerText;
+   const imgSrc = card.querySelector('img').src;
+   
+   document.getElementById('modalTitle').innerText = title;
+   document.getElementById('modalDesc').innerText = desc;
+   document.getElementById('modalImg').src = imgSrc;
+   document.getElementById('viewModal').style.display = 'flex';
+ }
+
+ function closeModal(event) {
+   if (event.target.id === 'viewModal'){
+   document.getElementById('viewModal').style.display = 'none';
+   }
+ }
+
+// Category Filter //
+
+function filterCategory(category,btnElement) {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearSearchBtn').style.display = 'none';
+  document.getElementById('noResultsMessage').style.display = 'none';
+  
+  document.querySelectorAll('.cat-btn').forEach(btn =>{
+    btn.classList.remove('active');
+  });
+  if (btnElement) btnElement.classList.add('active');
+  
+  const extraRow = document.getElementById('extraRow');
+  if (extraRow) extraRow.style.display = '';
+    
+  const cards = document.querySelectorAll('.lostitem-card');
+    cards.forEach(card => {
+      const cardCat = (card.getAttribute('data-category') || '').toLowerCase();
+      if (category === 'all' || cardCat === category.toLowerCase()) {
+         card.style.display = 'flex';
+      }else {
+        card.style.display = 'none';
+      }
+    });
+    
+    updateRowVisibility();
+}
+
+function handleSearchkey(event) {
+  if (event.key == 'Enter') {
+    searchItems();
+  }
+  if (document.getElementById('searchInput').value.trim() === '') {
+    clearSearch();
+  }
+}
+
+function searchItems() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchBtn');
+  const noResultsMsg = document.getElementById('noResultsMessage');
+  
+  if (query === '') {
+    clearSearch();
+   return;
+  }
+
+ clearBtn.style.display = 'inline-block';
+ 
+ document.querySelectorAll('.cat-btn').forEach(btn => {
+   btn.classList.remove('active');
+ });
+ 
+ let matchCount = 0
+ const cards = document.querySelectorAll('.lostitem-card');
+  
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const desc = card.querySelector('p').textContent.toLowerCase();
+    const category = (card.getAttribute('data-category') || '').toLowerCase();
+    
+    if (title.includes(query) || desc.includes(query) || category.includes(query)) {
+      card.style.display = 'flex';
+      matchCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  noResultsMsg.style.display = matchCount === 0 ? 'block' : 'none';
+  updateRowVisibility();
+}
+
+function goToClaimStatus() {
+  window.location.href = "ClaimArea.html";
+}
+
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearSearchBtn').style.display = 'none';
+  document.getElementById('noResultsMessage').style.display = 'none';
+  
+  const allBtn = document.querySelector('.cat-btn');
+  filterCategory('all', allBtn);
+}
+
+function updateRowVisibility() {
+  const rows = document.querySelectorAll('.carousel-row-wrapper');
+  rows.forEach(row => {
+    const visibleCards = Array.from(row.querySelectorAll('.lostitem-card')).filter(
+         card => card.style.display !== 'none');
+         row.style.display = visibleCards.length > 0 ? 'flex' : 'none';
+  });
+}
+
+// Mobile Nav Menu //
+
+  var navLinks = document.getElementById("navLinks");
+  function showMenu(){
+    navLinks.style.right = "0";
+  }
+  function hideMenu(){
+    navLinks.style.right = "-200px";
+  }
+  
+</script>
+</body>
+</html>
